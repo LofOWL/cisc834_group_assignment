@@ -1,0 +1,12 @@
+https://github.com/pachyderm/examples 
+https://github.com/pachyderm/ruby-pachyderm 
+https://github.com/CARAMBA-Clinic/COST-CHARME 
+https://github.com/pharmbio/LC-MS-Pachyderm 
+https://github.com/combust/pachyderm-mleap-demo 
+https://github.com/hypnosapos/yellow-pachyderm 
+https://github.com/jpoon/generalfusion-pachyderm 
+https://github.com/JimmyWhitaker/label-studio-pach 
+https://github.com/the-laughing-monkey/pachyderm 
+https://github.com/gerbenoostra/pachyderm_example 
+https://github.com/JimmyWhitaker/pach_clearml 
+https://github.com/suneeta-mall/e2e-ml-on-k8s 
