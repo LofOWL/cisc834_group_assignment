@@ -21,7 +21,10 @@ class Repository:
 
     def get_commit_diff(self,commits):
         command = f"git show {commits}"
-        data = subprocess.getoutput(command)
+        try:
+            data = subprocess.getoutput(command)
+        except:
+            data = ''
         return data
 
     def get_all_relate_files(self,arg):
@@ -32,17 +35,20 @@ class Repository:
         list_data = data.split("\n")
         files = list()
         for data in list_data:
+            print(data)
             file = data.split(":")[0]
             if file not in files:
                 files.append(file)
         return set(files)
 
     # get touch of files in a commit
-    def get_touch_files(self,commit):
+    def get_commit_touch_files(self,commit):
         self.setAddress()
-        data = subprocess.check_output(['git','show',commit,'--name-only','--format="%H"']).decode("utf-8").split("\n")[1:]
-        clean_data = [ele for ele in data if len(ele)]
-        return clean_data
+        # git show --pretty="" --name-only 1ea4aa7a
+        # data = subprocess.check_output(['git','show',commit,'--name-only','--format="%H"']).decode("utf-8").split("\n")[1:]
+        # clean_data = [ele for ele in data if len(ele)]
+        data =subprocess.getoutput(f'git show --pretty="" --name-only {commit}')    
+        return data.split("\n")
 
     # get the commit message
     def get_commit_message(self,commit):
@@ -52,9 +58,11 @@ class Repository:
         return message
 
     # get all commits 
-    def get_git_commits(self):
+    def get_all_commits(self):
         self.setAddress()
-        data = subprocess.check_output(['git', 'log', '--format=%H']).decode('utf-8').strip()
+        self.refresh()
+        # data = subprocess.check_output(['git', 'log', '--format=%H']).decode('utf-8').strip()
+        data = subprocess.getoutput('git log --format=%H')
         split_commit_message = [data for data in data.split("\n") if len(data)]
         return split_commit_message
 
@@ -70,11 +78,24 @@ class Repository:
         data = subprocess.getoutput(f"git show -s --format=%ci {commit}")
         return data
 
+    def get_file_diff(self,commit_f,file_f,commit_l,file_l):
+        # git diff <revision_1>:<file_1> <revision_2>:<file_2>
+        data = subprocess.getoutput(f'git diff --numstat {commit_f}:{file_f} {commit_l}:{file_l}')
+        data = data.split("\t")
+        return (data[0],data[1])
+
+    def get_LOC_files(self,files):
+        self.setAddress()
+        files = " ".join(files)
+        result = subprocess.getoutput(f'wc -l {files}')
+        lines = result.split("\n")[-1].split(" ")
+        filter_lines = [va for va in lines if va]
+        return int(filter_lines[0])
+
 if __name__ == "__main__":
     repositories = os.listdir("repositories")
     index = 2
     print(repositories[index])
     rp = Repository(path="/home/lofowl/Desktop/cisc834_group/mining/repositories/"+repositories[index])
-
     files = rp.get_relate_files('pfs')
     print(len(files))

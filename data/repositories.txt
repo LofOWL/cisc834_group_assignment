@@ -1,0 +1,12 @@
+https://github.com/NEONScience/NEON-IS-data-processing
+https://github.com/pachyderm/python-pachyderm
+https://github.com/wob-adarga/k8s-ds-labs
+https://github.com/logzilla/extras
+https://github.com/itssimon/pachypy
+https://github.com/lintol/doorstep
+https://github.com/Cloudify-PS/cloudify-versa-plugin
+https://github.com/nadegepepin/capstone-prototype
+https://github.com/iTwin/presentation-rules-editor
+https://github.com/pachyderm/ambient-music-generation
+https://github.com/pharmbio/MTBLS233-Pachyderm
+https://github.com/Agri-Hub/datacap

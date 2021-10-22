@@ -7,7 +7,6 @@ def relate_count(commits,*args):
         try:
             for arg in args:
                 if arg in commit[0]:
-                    print(commit[0])
                     relate_commits += 1
                     break
         except:
@@ -68,6 +67,7 @@ class ResearchQuestion:
         # Number of pachyderm-related files
         # generalfusion-pachyderm : 3
         # yellow-pachyderm : 2
+        self.rp.refresh()
         files = self.rp.get_all_relate_files('pfs')
         return len(files)
 
