@@ -1,5 +1,5 @@
-from lib.repository import Repository
-from lib.RQ import ResearchQuestion
+from lib import Repository
+from lib import ResearchQuestion
 import os
 import pandas as pd
 from tqdm import tqdm

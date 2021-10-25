@@ -1,4 +1,4 @@
-from lib.repository import Repository
+from lib import Repository
 from datetime import datetime
 
 def relate_count(commits,*args):
@@ -15,7 +15,7 @@ def relate_count(commits,*args):
 
 def get_related_commits_date(self):
     self.rp.refresh()
-    commits = self.rp.get_git_commits()
+    commits = self.rp.get_all_commits()
     touch_commits = list()
     for commit in commits:
         self.rp.set_to_commit(commit)
@@ -37,7 +37,7 @@ class ResearchQuestion:
         # generalfusion-pachyderm: 0
         # yellow-pachyderm: 3
         self.rp.refresh()
-        commits = self.rp.get_git_commits()
+        commits = self.rp.get_all_commits()
         related_commits = list()
         for commit in commits:
             diff = self.rp.get_commit_diff(commit).split("\n")
@@ -55,7 +55,7 @@ class ResearchQuestion:
         # generalfusion-pachyderm PRs: 0
         # yellow-pachyderm: 0
         self.rp.refresh()
-        commits = self.rp.get_git_commits()
+        commits = self.rp.get_all_commits()
         merge_commits = list()
         for commit in commits:
             message = self.rp.get_commit_message(commit)
@@ -94,7 +94,7 @@ class ResearchQuestion:
         # generalfusion-pacyhderm :
         # yellow-pachyderm :   
         
-        commits = self.rp.get_git_commits()
+        commits = self.rp.get_all_commits()
         date_commits = get_related_commits_date(self)
         date_commits.sort()
 
@@ -118,7 +118,7 @@ class ResearchQuestion:
         # generalfusion-pachyderm: 0%
         # yellow-pachyderm: 13%
         self.rp.refresh()
-        commits = self.rp.get_git_commits()
+        commits = self.rp.get_all_commits()
 
         related_commits = list()
         for commit in commits:
@@ -136,7 +136,7 @@ class ResearchQuestion:
     def RQ3_1(self):
         # All Bug Commit Message
         self.rp.refresh()
-        commits = self.rp.get_git_commits()
+        commits = self.rp.get_all_commits()
         fix_bug_commits = list()
         for commit in commits:
             message = self.rp.get_commit_message(commit)
